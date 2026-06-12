@@ -29,6 +29,76 @@ Describe the task in plain language, or pick the lane yourself:
 No command memorized? Just say the task — the session names the lane in
 one line and proceeds. Commands are accelerators, not gates.
 
+## Across the life of a project
+
+The same seven commands carry you from empty repo to maintenance — only
+the *mix* shifts. What changes stage to stage is how much PM ceremony you
+need, not the machinery.
+
+### Stage 0 — Bootstrap (once)
+Get the context pack real before any planning; agents plan badly against
+TODOs.
+```
+# greenfield: edit .claude/context/{product,architecture,conventions}.md by hand
+/adopt our Django + Postgres API, tests via pytest   # existing codebase: derive it, then confirm one batch
+/status                                               # sanity-check the index is empty/clean
+```
+
+### Stage 1 — Zero to one (define what you're building)
+The "what" is fuzzy, so you live in the **Product lane**. Spec first,
+decisions captured as ADRs while they're cheap to change.
+```
+/pm a referral system that rewards both inviter and invitee
+        → answer the open questions it surfaces; spec lands approved
+/plan 2026-06-12-referral-system                      # Opus turns the spec into file-level steps
+/build 2026-06-12-referral-system                     # Sonnet implements, pushing per step
+/qa 2026-06-12-referral-system                        # reviewer verdict against the spec
+# or collapse 1–4:  /ship a referral system that rewards both sides
+```
+
+### Stage 2 — Build-out (most of the project's life)
+The product is understood; features are clear S/M asks. **Build lane is
+your default** — skip the PM hop, the planner writes the mini-spec inline.
+```
+/plan add pagination to the offers endpoint           # clear ask → straight to a plan
+/build 2026-06-12-paginate-offers
+/qa 2026-06-12-paginate-offers
+/fix offers endpoint returns 500 on empty cursor       # mechanical bug → builder direct, reviewer after
+/status                                               # end of session: see what's in flight, what's stale
+```
+
+### Stage 3 — Scale & collaboration (more hands)
+Multiple people/agents in parallel. Lanes don't change; the claim
+protocol and `/status` do the coordinating.
+```
+/status                                               # who owns what, which claims are stale (>2h)
+/plan migrate sessions table to partitioned storage    # planner declares Claimed paths → serializes collisions
+/build 2026-06-13-partition-sessions                  # overlapping-path tasks wait; disjoint ones run concurrently
+# stale claim? read progress.md, /build resumes from the last green step — takeover is protocol, not a meeting
+```
+
+### Stage 4 — Maintenance & hardening (mature)
+Mostly small, mechanical work + the occasional reconsidered decision.
+```
+/fix bump axios past the advisory, rerun the lockfile  # the workhorse here
+/fix correct the rate-limit header name
+/pm reconsider whether we still need the v1 webhook     # a real product question resurfaces → back to the Product lane
+/status                                               # archive done tasks, keep the live index small
+```
+
+### Stage 5 — Handoff / onboarding (anytime)
+Onboarding a human or a fresh agent is two files, not a tour.
+```
+# point them at: README → docs/one-pager.md → CLAUDE.md
+/status                                               # the live state of the world in one read
+# everything else is in .claude/context (why) and .claude/state (what's happening)
+```
+
+**Rule of thumb:** early project → more `/pm`; mature project → more
+`/fix` and `/plan`. If you're reaching for `/pm` on every small task, the
+product's understood enough to drop to the Build lane. If `/fix` keeps
+hitting design choices, you're under-specced — go up a lane.
+
 ## What you get
 
 - **Continuity.** Every step is committed and pushed; a crash or context
