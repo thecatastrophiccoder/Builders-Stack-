@@ -7,6 +7,7 @@
 | Path | Purpose | Entry points / notes |
 |---|---|---|
 | `README.md` | Human landing page — note from Anmol, quick start, file map | |
+| `LICENSE` | MIT — reuse terms for the template | |
 | `CLAUDE.md` | Agent operating manual — rules, routing, protocols | Start here |
 | `AGENTS.md` | Bootstrap pointer for non-Claude agents/tools | Points to CLAUDE.md |
 | `.claude/agents/` | Agent definitions: pm, planner (opus) / builder, reviewer (sonnet) | Frontmatter pins model + tools |
@@ -17,5 +18,6 @@
 | `.claude/state/templates/` | Skeletons for spec/plan/progress/review | Copy, don't invent formats |
 | `.claude/state/tasks/<id>/` | Per-task working memory | Travels with `task/<id>` branch |
 | `.claude/state/archive/` | Dirs of merged/abandoned tasks | Index keeps a one-line Archive row |
+| `.github/workflows/checks.yml` | CI guards: command-name shadowing, codemap path check, gitleaks | Extend builtins list per ADR |
 | `docs/WORKFLOW.md` | Human-facing guide + best practices | |
 | _source tree: TODO when code lands_ | | |

@@ -18,6 +18,10 @@ Read, in order, and nothing else first:
    exploratory globbing: read the map, not the tree.
 4. **Your task's dir** `.claude/state/tasks/<id>/` — spec, plan, progress,
    review.
+5. **Capability check** — probe what the session's work will assume, now,
+   not at delivery: can you push (`git push --dry-run`)? Open PRs? Reach
+   the network? Surface any gap to the user as a one-line checklist before
+   building on top of it.
 
 All working state lives in these files, in the repo, committed. Chat memory
 is not storage: sessions crash, compact, and end. If the next session needs

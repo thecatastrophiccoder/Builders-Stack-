@@ -36,7 +36,8 @@ Entry format (newest at the bottom):
   environment (`git push --dry-run` or check app installation) before
   building work that assumes pushing; surface a permissions checklist to the
   user at session start instead of at delivery time.
-- **Status:** open
+- **Status:** adopted → CLAUDE.md Bootstrap step 5 + ADR 2026-06-12
+  (license, CI guards, capability check)
 
 ### 2026-06-12 — /review collided with a built-in skill and never registered
 - **By:** orchestrating session · **Task:** n/a · **Type:** mistake

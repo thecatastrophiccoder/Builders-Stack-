@@ -1,5 +1,26 @@
+# secrets & keys
 .env
 .env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+secrets*
+
+# dependencies & build artifacts
 node_modules/
 __pycache__/
+dist/
+build/
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# logs
 *.log

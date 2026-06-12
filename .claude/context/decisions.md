@@ -54,3 +54,28 @@ command renamed.
 New command names must avoid built-in skill names (`review`, `verify`,
 `code-review`, `security-review`, `init`, `run`, `loop`, `simplify`) —
 check the skill list before adding one.
+
+## 2026-06-12 — MIT license, CI guards, session capability check
+**Status:** accepted
+**Context:** The template is public and meant for reuse but shipped no
+license — default copyright means nobody may legally reuse it. The learning
+log already shows rules that rely on voluntary compliance get broken
+(same-commit codemap miss; /review shadowing), and holds an open entry
+asking for a session-start permissions check after a push was denied at
+delivery time.
+**Decision:** License the template MIT. Add `.github/workflows/checks.yml`
+enforcing in CI: (a) command names must not match built-in skill names —
+list extended beyond the previous ADR's eight with the other bare-named
+bundled skills observed in-session (`schedule`, `deep-research`,
+`update-config`, `keybindings-help`, `fewer-permission-prompts`,
+`claude-api`); (b) every backticked codemap row path must exist in the
+tree; (c) gitleaks secret scan over full history. Harden `.gitignore`
+(keys, credentials, IDE/OS junk, build dirs). Add Bootstrap step 5 to
+CLAUDE.md: probe assumed capabilities (push, PRs, network) at session
+start. Solo mode is in effect for this repo: the orchestrating session
+commits workflow meta-changes directly to main (recorded here once, per
+CLAUDE.md → Collaboration → Solo mode).
+**Consequences:** Collision and stale-codemap mistakes fail in CI instead
+of silently recurring; reusers get real license terms; the open
+permissions learning is adopted and closed. The CI built-ins list needs
+extending when sessions observe new bundled skill names.

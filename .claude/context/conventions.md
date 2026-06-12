@@ -6,16 +6,16 @@
 ## Code structure (non-negotiable)
 - **Small, single-purpose functions.** A function does one thing; if the
   name needs "and", split it.
-- **Pure core, effectful edges.** Business/query logic takes data in,
-  returns data out; I/O, network, and index writes live in thin outer
-  layers. This is what makes the core unit-testable.
+- **Pure core, effectful edges.** Business logic takes data in, returns
+  data out; I/O, network, and datastore writes live in thin outer layers.
+  This is what makes the core unit-testable.
 - **Modules own one concern** with an explicit interface; cross-module
   reach-ins are review failures.
 - **Duplication over wrong abstraction, but not three times.** Extract on
   the second real caller, never speculatively.
-- **Efficiency is specified, not vibes.** Budgets (latency, memory, index
-  size) come from the spec; meet them, and don't micro-optimize where no
-  budget exists.
+- **Efficiency is specified, not vibes.** Budgets (latency, memory,
+  storage size) come from the spec; meet them, and don't micro-optimize
+  where no budget exists.
 
 ## Code style
 - Match the surrounding file over any global rule.

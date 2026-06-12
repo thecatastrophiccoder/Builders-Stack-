@@ -1,0 +1,53 @@
+name: repo-checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  guards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Built-in skills silently shadow same-named project commands
+      # (see learnings.md 2026-06-12 and the ADRs). List = bare-named
+      # bundled skills observed in-session; extend when new ones appear.
+      - name: Slash commands must not shadow built-in skills
+        run: |
+          builtins="review verify code-review security-review init run loop simplify schedule deep-research update-config keybindings-help fewer-permission-prompts claude-api"
+          status=0
+          for f in .claude/commands/*.md; do
+            name="$(basename "$f" .md)"
+            for b in $builtins; do
+              if [ "$name" = "$b" ]; then
+                echo "::error file=$f::/$name collides with a built-in Claude Code skill and would be silently shadowed"
+                status=1
+              fi
+            done
+          done
+          exit $status
+
+      # The same-commit codemap rule, enforced (learnings.md 2026-06-12):
+      # every backticked path in a codemap row must exist in the tree.
+      - name: Codemap rows must point at real paths
+        run: |
+          status=0
+          while IFS= read -r p; do
+            case "$p" in *'<'*) continue ;; esac
+            if [ ! -e "$p" ]; then
+              echo "::error file=.claude/context/codemap.md::row points at missing path: $p"
+              status=1
+            fi
+          done < <(sed -n 's/^|[[:space:]]*`\([^`]*\)`.*/\1/p' .claude/context/codemap.md)
+          exit $status
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
