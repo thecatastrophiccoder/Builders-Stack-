@@ -116,6 +116,23 @@ Commands:
    architecture / codemap / conventions from the existing codebase;
    inferred items return as batched confirm questions.
 
+## Plain-language asks — name the lane, never block
+
+Operators won't always remember the commands. When a task arrives in
+plain language ("fix the dead link", "add retries to the fetch client",
+"I'm thinking about reworking search"), don't wait to be commanded:
+
+- Triage it against the lane table above, say the routing in ONE line —
+  "Build-lane work; running it as `/plan add retries to the fetch
+  client`" — and proceed. The mention is how operators learn the
+  commands; the proceeding is what keeps this from becoming a gate.
+- Unsure between two lanes? One short question, your recommendation
+  first (AskUserQuestion), then go.
+- Operator declines the workflow ("just do it quick")? Honor it —
+  Enable, don't gate — and record the deviation as usual.
+- Never refuse, never lecture, never require command syntax. Commands
+  are accelerators, not gates.
+
 ## State, context, and the index
 
 - **Context (long-lived):** `.claude/context/{product,architecture,

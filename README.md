@@ -44,6 +44,20 @@ above).
 Or run the stages yourself: `/plan <desc>` → `/build <task-id>` →
 `/qa <task-id>` (prepend `/pm` when the "what" needs deciding).
 
+No command memorized? Just describe the task — the session names the
+lane in one line and runs it. Commands are accelerators, not gates.
+
+## What people use it for
+
+| You are... | Your move |
+|---|---|
+| Solo, shipping a side project across evening sessions | Every session resumes from the index, not from memory — `/status`, then keep building |
+| Two humans + a handful of agents on one repo | Claims and per-step pushes stop collisions; takeovers are protocol, not Slack archaeology |
+| Dropping agents into a three-year-old codebase | `/adopt` derives the context pack from the code; in-flight work onboards as lanes touch it |
+| Burning frontier-model tokens on typing | Lanes route execution to Sonnet — the expensive model only thinks |
+| Mid-refactor, too big for one context window | The plan is the memory: builders execute steps across sessions, losing at most one step to a crash |
+| Asking "why is it built this way?" six months later | `decisions.md` — it's an ADR lookup, not archaeology |
+
 ## Where things live
 
 | You want... | Look at... |
@@ -74,4 +88,5 @@ drafts all four context files plus the code map for you to confirm,
 merging around anything you already wrote. In-flight branches and PRs
 join the index as lanes touch them — no big-bang migration.
 
-More detail in [`docs/WORKFLOW.md`](docs/WORKFLOW.md).
+More detail in [`docs/WORKFLOW.md`](docs/WORKFLOW.md) — or the
+one-page version in [`docs/one-pager.md`](docs/one-pager.md).

@@ -122,3 +122,18 @@ adoption.
 **Consequences:** Day-one adoption cost is one command plus one confirm
 batch; context starts from evidence, humans confirm instead of typing;
 the index never claims work it doesn't own.
+
+## 2026-06-12 — Name the lane on plain-language asks (suggest, never block)
+**Status:** accepted
+**Context:** Operators forget command names or don't know them yet; a
+workflow only reachable by memorized syntax gets bypassed, and a session
+that quizzes the user before working becomes a gate.
+**Decision:** When a task arrives in plain language, the orchestrating
+session triages it against the lane table, names the routing in one line
+("Build-lane work; running it as `/plan <desc>`"), and proceeds. Unsure
+between lanes → one short question with a recommendation. Operator
+declines the workflow → honor it and record the deviation. Never refuse,
+never require command syntax.
+**Consequences:** Commands are discoverable through use; plain language
+is a first-class entry point; the suggestion is informational, the work
+proceeds either way.

@@ -27,6 +27,10 @@ Lighter lanes drop documents, never discipline: branch, index row,
 per-step pushes, tests, and review apply in all three; the first material
 question moves a task up a lane.
 
+No command memorized? Describe the task in plain language — the session
+triages it, names the lane in one line, and runs it (CLAUDE.md →
+Plain-language asks). Commands are accelerators, not gates.
+
 ## Adopting mid-project
 
 Most teams add this workflow to a codebase that already exists. `/adopt`
