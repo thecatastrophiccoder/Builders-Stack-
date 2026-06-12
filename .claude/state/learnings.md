@@ -69,3 +69,22 @@ Entry format (newest at the bottom):
   reviewer/builder checklist line — already in reviewer.md step 5; the
   orchestrator must hold itself to it too).
 - **Status:** adopted (rows fixed in the same commit as this entry)
+
+### 2026-06-12 — CI guard used `grep -P`, which dies on Windows Git Bash
+- **By:** orchestrating session · **Task:** n/a · **Type:** shortcoming
+- **What happened:** The codemap path-check (and the first draft of
+  `.github/workflows/checks.yml`) extracted paths with `grep -oP`. On the
+  operator's Windows Git Bash it failed — `grep: -P supports only unibyte
+  and UTF-8 locales` — so local verification of the guard returned a false
+  pass (exit 0 with zero matches) instead of actually checking.
+- **Context:** CI runs on `ubuntu-latest` where `-P` works, but this repo
+  is operated from Windows; a check that only works on the CI runner can't
+  be trusted when run locally before commit. Swapped to POSIX
+  `sed -n 's/.../\1/p'`, which works in both.
+- **Impact:** A few minutes; nearly shipped a guard that silently no-ops on
+  the machine where pre-commit checks actually run.
+- **Suggested improvement:** Shell snippets in checks/hooks must be POSIX —
+  no `grep -P`, no GNU-only flags — so they behave the same in CI and in
+  the operator's local shell. Verify a guard by making it FAIL once, not
+  just pass.
+- **Status:** adopted (checks.yml uses sed; verified by forcing a failure)
