@@ -8,14 +8,24 @@ person, any agent can pick up where another left off.
 ## Quick start
 
 ```
-/pm add fuzzy matching to merchant search     # Opus writes a spec (asks you if ambiguous)
-/plan 2026-06-12-fuzzy-merchant-search        # Opus writes a step plan
-/build 2026-06-12-fuzzy-merchant-search       # Sonnet implements, pushing per step
-/qa 2026-06-12-fuzzy-merchant-search          # Sonnet verifies against the spec
+/fix dead link in the README                  # XS: builder direct, reviewer after
+/plan add retry to the fetch client           # S/M, clear ask: Opus plans (mini-spec inline)
+/build 2026-06-12-add-retry-fetch-client      # Sonnet implements, pushing per step
+/qa 2026-06-12-add-retry-fetch-client         # Sonnet verifies
+/pm rethink merchant search ranking           # ambiguous/large: spec first, then the above
 /status                                       # reconcile index with git, see everything
 
-/ship add fuzzy matching to merchant search   # all of the above, S/M tasks only
+/ship add fuzzy matching to merchant search   # triaged + run end-to-end, S/M tasks only
 ```
+
+Three lanes, picked by ambiguity. `/fix` for XS mechanical changes
+(builder direct, steps live in progress.md, no spec/plan docs). `/plan
+<description>` for clear S/M work — **the everyday default**; the planner
+writes a mini-spec (goal + acceptance checks) into the plan, no PM hop.
+`/pm` for ambiguous, product-shaped, or L work — the full pipeline.
+Lighter lanes drop documents, never discipline: branch, index row,
+per-step pushes, tests, and review apply in all three; the first material
+question moves a task up a lane.
 
 ## The pieces
 
@@ -28,7 +38,7 @@ AGENTS.md              # bootstrap pointer for non-Claude tools
 │   ├── planner.md     # opus   — spec → step plan, interfaces, claims
 │   ├── builder.md     # sonnet — plan → code, commit+push per step
 │   └── reviewer.md    # sonnet — code → verdict + hygiene enforcement
-├── commands/          # /pm /plan /build /qa /ship /status
+├── commands/          # /fix /pm /plan /build /qa /ship /status
 ├── context/           # long-lived knowledge (read before working)
 │   ├── product.md     # what & for whom            (FILL THE TODOs)
 │   ├── architecture.md# stack & system design      (FILL THE TODOs)

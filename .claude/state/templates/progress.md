@@ -9,6 +9,7 @@ what other sessions read instead of the whole file.>
 **Claimed paths:** <from plan.md>
 
 ## Steps
+From plan.md — or builder-authored here, before any code, in /fix mode (≤3).
 | Step | Status | Commit | Note |
 |---|---|---|---|
 | 1 | todo / in_progress / done | <sha> | |

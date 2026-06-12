@@ -79,3 +79,24 @@ CLAUDE.md → Collaboration → Solo mode).
 of silently recurring; reusers get real license terms; the open
 permissions learning is adopted and closed. The CI built-ins list needs
 extending when sessions observe new bundled skill names.
+
+## 2026-06-12 — Three lanes: bias the loop toward building
+**Status:** accepted
+**Context:** Every ask, however mechanical, paid idea → pm spec → plan —
+two Opus hops and two documents before any code. A workflow heavier than
+freehand coding gets bypassed, and a bypassed workflow protects nothing.
+**Decision:** Triage by ambiguity into three lanes. **Fix** (`/fix`, XS
+mechanical): builder direct; its ≤3 steps live in progress.md; no
+spec/plan docs; qa capped at one cycle (docs-only may skip, recorded).
+**Build** (`/plan <description>`, unambiguous S/M): the coding default —
+the planner mints the task and writes a mini-spec (goal + acceptance
+checks) into plan.md; no pm hop. **Product** (`/pm`): ambiguous "what",
+product-shaped, or L — the full pipeline, unchanged. `/ship` triages
+instead of always starting at pm. Escalation is one-way up: a design
+choice mid-fix or a material "what" question mid-plan stops the line and
+re-routes; ask-before-execute holds in every lane.
+**Consequences:** pm specs only what is genuinely ambiguous; most coding
+starts at the planner or the builder. Branch, claim, index row, per-step
+pushes, tests, codemap, and review are identical in all lanes — lanes
+drop documents, not discipline. Index rows may enter mid-chain (Build at
+`planned`, Fix at `building`).

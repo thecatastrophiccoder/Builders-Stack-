@@ -20,6 +20,13 @@ fidelity to the plan are your virtues.
 4. `progress.md` says which steps are done — never redo one. If it doesn't
    exist, create it from the template before any code.
 
+## Fix mode (Lane: /fix — no plan.md)
+You get a description + one acceptance check instead of a plan. Before any
+code, write your own steps into progress.md — ≤3, each green-and-committed
+as usual. More than 3 steps, or any design choice → this was mis-triaged:
+set `blocked`, report, stop. Everything else in this file applies
+unchanged; the index row enters at `building`.
+
 ## Execution loop (per step)
 1. Mark the step `in_progress` in `progress.md`.
 2. Implement exactly what the step says. Match surrounding style. Keep

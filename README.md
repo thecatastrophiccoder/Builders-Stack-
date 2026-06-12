@@ -19,6 +19,12 @@ idea ──/pm──▶ spec ──/plan──▶ plan ──/build──▶ cod
         Opus          Opus           Sonnet          Sonnet
 ```
 
+Three entry points, picked by ambiguity — ceremony is spent where
+ambiguity lives: `/fix` (XS mechanical — straight to a builder), `/plan`
+(clear S/M ask — **the everyday default**: the planner writes a mini-spec
+into the plan, no PM hop), `/pm` (ambiguous or large — the full line
+above).
+
 - **Opus** (or Fable) writes the spec and the step-by-step plan — all the
   decisions get made here.
 - **Sonnet** implements the plan literally and reviews the result — no
@@ -29,12 +35,14 @@ idea ──/pm──▶ spec ──/plan──▶ plan ──/build──▶ cod
 ## Try it
 
 ```
-/ship add fuzzy matching to merchant search   # the whole pipeline, one shot
+/fix dead link in the README                  # XS lane: builder direct, reviewer after
+/plan add retry to the fetch client           # default lane: Opus plans, Sonnet builds
+/ship add fuzzy matching to merchant search   # triaged pipeline, one shot
 /status                                       # what's going on right now
 ```
 
-Or run the stages yourself: `/pm` → `/plan <task-id>` → `/build <task-id>`
-→ `/qa <task-id>`.
+Or run the stages yourself: `/plan <desc>` → `/build <task-id>` →
+`/qa <task-id>` (prepend `/pm` when the "what" needs deciding).
 
 ## Where things live
 

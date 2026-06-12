@@ -1,17 +1,20 @@
 ---
-description: Turn a spec into a step-by-step implementation plan (Opus planner agent). Usage: /plan <task-id>
+description: Plan a task — from its spec, or directly from a description (Build lane, Opus planner). Usage: /plan <task-id | description>
 ---
 
-Task: $ARGUMENTS
+Input: $ARGUMENTS
 
-1. Check `.claude/state/index.md` for the task. No `spec` row → list
-   available tasks and stop.
+1. If $ARGUMENTS matches an index row with a spec → spec mode. Otherwise
+   treat it as a Build-lane description: the planner mints the task-id and
+   writes the mini-spec (goal, acceptance checks, non-goals) at the top of
+   plan.md — no pm hop. If the "what" is materially ambiguous or it sizes
+   L, the planner stops and says so → route to `/pm`.
 2. Launch the `planner` agent. It explores the codebase (codemap first),
-   writes `plan.md`, fills Claimed paths, and moves the index row to
-   `planned`.
-3. If the planner surfaces questions (spec ambiguity, claimed-path collision
+   writes `plan.md`, fills Claimed paths, and moves (or creates) the index
+   row at `planned`.
+3. If the planner surfaces questions (ambiguity, claimed-path collision
    with an active task), ask me with AskUserQuestion — planner's
    recommendation first — and send my answers back to the same planner
    agent to finish.
 4. Relay: step count, parallel groups, claimed paths, risks. Suggest
-   `/build $ARGUMENTS`.
+   `/build <task-id>`.

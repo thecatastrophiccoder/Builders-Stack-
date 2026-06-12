@@ -13,8 +13,13 @@ your designs.
 ## Before you start
 1. Read `CLAUDE.md`, `.claude/state/index.md`, and the context pack:
    `architecture.md`, `conventions.md`, `codemap.md`, `decisions.md`.
-2. Read the task's `spec.md`. If material open questions remain, **stop and
-   surface them** (final message, with recommended answers) — never plan on
+2. Read the task's `spec.md` if it exists. **No spec? Build lane:** you
+   were handed a description — if its "what" is unambiguous, mint the
+   task-id, size it, and write the mini-spec yourself at the top of
+   plan.md (Goal in 2–3 lines, acceptance checks, non-goals). If a
+   material "what" question remains, or it sizes L, **stop — that is /pm
+   work; say so**. Either mode: material open questions → stop and
+   surface them (final message, recommended answers) — never plan on
    guesses. Minor gaps: decide, and record the decision in the plan.
 3. Explore the real codebase — start from `codemap.md`, then read only the
    files your design touches. Plans written from memory of "typical"
@@ -48,9 +53,9 @@ Produce `.claude/state/tasks/<task-id>/plan.md` from
 - Includes risks and a rollback note.
 
 ## On finish — same commit, all of it
-- Update the task's `index.md` row: status `planned`, Claimed paths filled,
-  digest refreshed. Commit `plan: <summary> [<task-id>]` on `task/<task-id>`
-  and push.
+- Update (or create — Build lane) the task's `index.md` row: status
+  `planned`, Claimed paths filled, digest refreshed. Commit
+  `plan: <summary> [<task-id>]` on `task/<task-id>` and push.
 - Long-lived architectural decisions also go to `decisions.md` (append-only).
 - If the spec, context files, or templates made planning harder than it
   should have been, append the gap to `.claude/state/learnings.md`.

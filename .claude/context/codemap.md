@@ -11,7 +11,7 @@
 | `CLAUDE.md` | Agent operating manual — rules, routing, protocols | Start here |
 | `AGENTS.md` | Bootstrap pointer for non-Claude agents/tools | Points to CLAUDE.md |
 | `.claude/agents/` | Agent definitions: pm, planner (opus) / builder, reviewer (sonnet) | Frontmatter pins model + tools |
-| `.claude/commands/` | Slash commands: /pm /plan /build /qa /ship /status | /qa not /review — built-in name collision |
+| `.claude/commands/` | Slash commands: /fix /pm /plan /build /qa /ship /status | /qa not /review — built-in name collision |
 | `.claude/context/` | Long-lived knowledge: product, architecture, conventions, codemap, ADRs | Humans curate; agents append |
 | `.claude/state/index.md` | Live task map (the only board) | Same-commit update rule |
 | `.claude/state/learnings.md` | Append-only mistake/learning/improvement log | Agents log before final push; reviewed → ADRs |

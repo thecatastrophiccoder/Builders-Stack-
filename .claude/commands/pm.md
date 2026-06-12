@@ -11,3 +11,5 @@ When it returns:
    proceed to planning around unresolved material questions.
 2. Relay: task-id, spec TL;DR, size, and what was assumed vs. asked.
 3. Suggest `/plan <task-id>` only once the spec is `approved`.
+4. Product lane only: if the ask turns out to be an unambiguous S/M coding
+   task, don't spec it — say so and point at `/plan <desc>` instead.

@@ -40,6 +40,11 @@ cannot push, the files still serve local resume — commit anyway.
 The builder never makes architectural decisions. A plan that forces it to is
 a defective plan — route the gap back to the planner.
 
+Frontmatter routes models, prose doesn't: `agents/pm.md` and
+`agents/planner.md` pin `model: opus` — flip those two lines to the Fable
+model id on installs that have it (see docs/WORKFLOW.md). The table above
+documents intent; the frontmatter enforces it.
+
 ## Ask before you execute
 
 A wrong assumption costs more than a question. Before acting:
@@ -71,17 +76,38 @@ workflow.
   open question in the state file, move on. Blocked on one front? Advance
   every other front you can.
 
-## The loop
+## The loop — three lanes, biased toward building
 
-1. `/pm <idea>` — PM (Opus) → `spec.md`; asks the user through the
-   orchestrator if the idea is ambiguous.
-2. `/plan <id>` — Planner (Opus) → `plan.md`, file-level steps.
-3. `/build <id>` — Builder(s) (Sonnet) execute steps; progress + push after
-   every step.
-4. `/qa <id>` — Reviewer (Sonnet) → `review.md`, verdict. (Named `/qa`
+Ceremony is spent where ambiguity lives. Triage every ask in seconds (the
+orchestrator does this; no agent launch needed):
+
+| Lane | When | Path |
+|---|---|---|
+| **Fix** | XS/mechanical — clear target, no design choice, ≤ ~30 min | `/fix <desc>` → `/qa` |
+| **Build** | S/M with an unambiguous "what" — **the default for coding** | `/plan <desc>` → `/build` → `/qa` |
+| **Product** | Ambiguous "what", product-shaped, or L | `/pm <idea>` → `/plan` → `/build` → `/qa` |
+
+- When the lane is debatable, pick the lighter one and escalate on the
+  first material question — ask-before-execute holds in every lane;
+  lighter ceremony is never a license to guess.
+- Wrong-lane discoveries route up, never push through: a design choice
+  mid-`/fix` or a material "what" question mid-`/plan` stops the line.
+- Branch, claim, index row, per-step pushes, tests, codemap, review: the
+  same in all lanes. Lanes drop documents, not discipline.
+
+Commands:
+1. `/fix <desc>` — Builder (Sonnet) direct; its ≤3 steps live in
+   progress.md, no spec/plan docs. Reviewer after (docs-only may skip).
+2. `/pm <idea>` — PM (Opus) → `spec.md`; Product lane only.
+3. `/plan <id|desc>` — Planner (Opus) → `plan.md`. Given a description
+   with no spec, it writes the mini-spec (goal + acceptance checks) into
+   plan.md — the Build-lane entry point.
+4. `/build <id>` — Builder(s) (Sonnet) execute steps; progress + push
+   after every step.
+5. `/qa <id>` — Reviewer (Sonnet) → `review.md`, verdict. (Named `/qa`
    because `/review` collides with a built-in skill and gets shadowed.)
-5. `/ship <idea>` — 1–4 end-to-end, small/medium tasks only.
-6. `/status` — reconcile index against git and report.
+6. `/ship <idea>` — triage, then the chosen lane end-to-end; S/M only.
+7. `/status` — reconcile index against git and report.
 
 ## State, context, and the index
 
