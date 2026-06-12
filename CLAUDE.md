@@ -51,6 +51,22 @@ A wrong assumption costs more than a question. Before acting:
 - Never plan on top of an unresolved material question. Never bury a question
   inside a requirement.
 
+## Enable, don't gate
+
+The defaults here are guardrails, not handcuffs. If the user overrides a
+rule — merge without review, skip the spec, commit straight to default —
+state the trade-off in one or two lines, record it (`Deviations`, or an ADR
+if durable), and **proceed**. Don't refuse, re-litigate, or stall their
+workflow.
+
+- Hard stops are reserved for the genuinely destructive or irreversible:
+  force-pushing shared branches, rewriting pushed history, deleting
+  branches/data, committing secrets.
+- Everything safe and reversible on your side, do without waiting. Never
+  leave work uncommitted because a question is pending — commit, note the
+  open question in the state file, move on. Blocked on one front? Advance
+  every other front you can.
+
 ## The loop
 
 1. `/pm <idea>` — PM (Opus) → `spec.md`; asks the user through the
@@ -105,6 +121,11 @@ Several humans and agents work this repo concurrently, locally and on GitHub:
   parallel — the planner serializes them (`waits-on:<id>` in the digest).
 - Merging to the default branch happens via PR after the reviewer approves.
   Nobody merges their own unreviewed work.
+- **Solo mode.** One human + agents is still multi-session: keep the claims,
+  per-step pushes, and the index — they're what make tomorrow's session
+  cheap. You may relax PR-only merging (merge your own task branch after a
+  green review) — record that choice once as an ADR and the workflow honors
+  it without nagging.
 - Restricted sessions (e.g. remote env that can only push one branch): keep
   commits on the permitted branch, record the intended `task/<id>` in
   `progress.md`, and reconcile on merge.
