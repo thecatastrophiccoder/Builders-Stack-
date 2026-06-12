@@ -4,9 +4,14 @@ description: Turn a spec into a step-by-step implementation plan (Opus planner a
 
 Task: $ARGUMENTS
 
-1. Verify `.claude/state/tasks/$ARGUMENTS/spec.md` exists; if not, list
-   available tasks from `.claude/state/board.md` and stop.
-2. Launch the `planner` agent for this task. It must explore the codebase,
-   write `plan.md`, and update the board to `planned`.
-3. Relay the plan summary: step count, parallelizable steps, risks.
-   Suggest `/build $ARGUMENTS` as the next move.
+1. Check `.claude/state/index.md` for the task. No `spec` row → list
+   available tasks and stop.
+2. Launch the `planner` agent. It explores the codebase (codemap first),
+   writes `plan.md`, fills Claimed paths, and moves the index row to
+   `planned`.
+3. If the planner surfaces questions (spec ambiguity, claimed-path collision
+   with an active task), ask me with AskUserQuestion — planner's
+   recommendation first — and send my answers back to the same planner
+   agent to finish.
+4. Relay: step count, parallel groups, claimed paths, risks. Suggest
+   `/build $ARGUMENTS`.

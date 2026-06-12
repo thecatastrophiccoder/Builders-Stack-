@@ -23,3 +23,19 @@ implementation.
 **Consequences:** Plans must be detailed enough for literal execution;
 builders must escalate design gaps instead of improvising; task state must
 survive session loss.
+
+## 2026-06-12 — Single index + claim protocol for multi-session collaboration
+**Status:** accepted
+**Context:** Multiple sessions and people work concurrently (local +
+GitHub); a separate board and index would drift; full-tree reads waste
+tokens in every subagent.
+**Decision:** `.claude/state/index.md` is the only task map (no board),
+carrying owner, branch head SHA, claimed paths, and a ≤15-word digest per
+task — updated in the same commit as the change it describes. Git is ground
+truth; the index is the cache, reconciled by `/status`. Ownership = claim in
+index + progress, pushed; stale after ~2h without a pushed commit, then
+takeover via the session log. `codemap.md` maps path → purpose and updates
+in the same commit as structural changes.
+**Consequences:** Agents read index/codemap first and open task files only
+when digests fall short; per-step pushes are mandatory; reviewers reject
+commits that skip index/codemap updates.

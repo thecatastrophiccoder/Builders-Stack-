@@ -1,11 +1,13 @@
 ---
-description: Show the task board and any blockers. Usage: /status [task-id]
+description: Reconcile the index with git and report. Usage: /status [task-id]
 ---
 
-If a task-id was given ($ARGUMENTS), read that task's `spec.md` size line,
-`plan.md` step list, and `progress.md`, and summarize where it stands and
-what's next.
-
-Otherwise read `.claude/state/board.md` and every `blocked`/`building` task's
-`progress.md`, and give me: a table of tasks by status, active blockers, and
-the single most useful next command to run.
+1. `git fetch --all --prune`, then read `.claude/state/index.md` — one read,
+   don't open task dirs unless a digest is insufficient or asked.
+2. Reconcile: compare each row's Head against `git log -1 origin/task/<id>`
+   and list `task/*` branches missing from the index. Report drift (git is
+   truth) and fix the index rows.
+3. If a task-id was given ($ARGUMENTS): summarize its spec TL;DR, plan steps
+   vs. progress, owner freshness, and the next command to run.
+4. Otherwise: tasks by status, active/stale claims, blockers, and the single
+   most useful next command.

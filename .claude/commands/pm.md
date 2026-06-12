@@ -4,7 +4,10 @@ description: Turn an idea into a spec (Opus pm agent). Usage: /pm <idea>
 
 Launch the `pm` agent with this idea: $ARGUMENTS
 
-The agent must produce `.claude/state/tasks/<task-id>/spec.md` and update
-`.claude/state/board.md`. When it returns, relay to me: the task-id, the spec
-summary, and any open questions. If there are open questions, ask me to
-resolve them before suggesting `/plan <task-id>`.
+When it returns:
+1. If it surfaced **open questions**, ask me with AskUserQuestion (use the
+   pm's recommended answers as the first options), then send the answers
+   back to the same pm agent to finalize the spec as `approved`. Do not
+   proceed to planning around unresolved material questions.
+2. Relay: task-id, spec TL;DR, size, and what was assumed vs. asked.
+3. Suggest `/plan <task-id>` only once the spec is `approved`.
