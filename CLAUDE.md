@@ -100,6 +100,27 @@ Index discipline — this is what keeps collaboration and token spend sane:
 - Every state file opens with a one-line **TL;DR**. Keep it current; most
   readers must be able to stop there.
 
+## Learning log — the workflow improves itself
+
+`.claude/state/learnings.md` is the append-only log of mistakes,
+shortcomings, edge cases, and ideas. It exists because the same failure paid
+for twice is a process bug, not bad luck.
+
+- **When to log:** before you finish a work session — and whenever you
+  reconnect to git after a stretch of work — ask: did anything fight me? A
+  rule that got in the way, a gap the plan/spec/templates didn't cover, an
+  assumption that turned out wrong, wasted retries, a case nobody
+  anticipated. If yes, append an entry (format is at the top of the file).
+- **How to log:** facts and context, no blame. Enough detail that a human
+  reading it cold, weeks later, can act on it. Include the concrete
+  improvement you'd suggest — an entry without a suggestion is half an entry.
+- **Logging is not asking.** Don't wait for a response; record it, push it,
+  move on. Material questions still go through the ask-before-execute
+  protocol — the log is for what's already happened.
+- **The loop closes:** humans and the pm/planner review the log
+  periodically; adopted entries become ADRs or rule changes via PR, and the
+  entry's Status is updated to point at them.
+
 ## Collaboration — many sessions, many people
 
 Several humans and agents work this repo concurrently, locally and on GitHub:

@@ -37,4 +37,8 @@ human or the orchestrator — never by you), `building` on request-changes,
 with blocking findings copied into `progress.md → Blockers` so the builder
 picks them up cold. Commit `review: <verdict> [<task-id>]`, push.
 
+If the review surfaced a recurring failure pattern (vague criteria, thin
+plans, a convention nobody follows), append it to
+`.claude/state/learnings.md` — reviewers see the patterns first.
+
 Final message: verdict, criterion pass/fail table, top findings.

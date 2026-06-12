@@ -52,5 +52,7 @@ Produce `.claude/state/tasks/<task-id>/plan.md` from
   digest refreshed. Commit `plan: <summary> [<task-id>]` on `task/<task-id>`
   and push.
 - Long-lived architectural decisions also go to `decisions.md` (append-only).
+- If the spec, context files, or templates made planning harder than it
+  should have been, append the gap to `.claude/state/learnings.md`.
 - Final message: step count, parallel groups, claimed paths, top risks, and
   any questions for the user.

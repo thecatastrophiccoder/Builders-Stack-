@@ -12,6 +12,7 @@
 | `.claude/commands/` | Slash commands: /pm /plan /build /review /ship /status | Orchestration lives here |
 | `.claude/context/` | Long-lived knowledge: product, architecture, conventions, codemap, ADRs | Humans curate; agents append |
 | `.claude/state/index.md` | Live task map (the only board) | Same-commit update rule |
+| `.claude/state/learnings.md` | Append-only mistake/learning/improvement log | Agents log before final push; reviewed → ADRs |
 | `.claude/state/templates/` | Skeletons for spec/plan/progress/review | Copy, don't invent formats |
 | `.claude/state/tasks/<id>/` | Per-task working memory | Travels with `task/<id>` branch |
 | `docs/WORKFLOW.md` | Human-facing guide + best practices | |

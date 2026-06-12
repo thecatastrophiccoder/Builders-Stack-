@@ -45,5 +45,8 @@ A good spec:
   Push.
 - If the idea changed a long-lived product assumption, append an ADR to
   `.claude/context/decisions.md`.
+- Periodically scan `.claude/state/learnings.md` for `open` entries that
+  point at spec/process gaps — adopting them into rules or templates is PM
+  work. If this session exposed such a gap, append it.
 - Final message: task-id, 3-line spec summary, open questions (with your
   recommendations) that block planning.

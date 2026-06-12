@@ -1,4 +1,11 @@
-# ckSearch
+# Builders' Stack
+
+> **A note from Anmol (the human here):** this repo is my experiment in
+> running a real product workflow on a team of AI agents — I bring the ideas
+> and the taste, they bring the planning and the typing. Everything they do
+> is written down in files you can read, including their own mistakes (see
+> the learning log below — they're required to confess). Steal whatever's
+> useful, and if you spot something dumb, odds are it's already logged.
 
 Hey! This repo runs on a multi-agent Claude Code workflow. The short
 version: **smart expensive models do the thinking, fast cheap models do the
@@ -37,6 +44,7 @@ Or run the stages yourself: `/pm` → `/plan <task-id>` → `/build <task-id>`
 | What's in flight | `.claude/state/index.md` — every task, one line each |
 | What the code does | `.claude/context/codemap.md` — map, not the territory |
 | Why we did X | `.claude/context/decisions.md` — the ADR log |
+| What went wrong & what we learned | `.claude/state/learnings.md` — agents log their own misses |
 | A task's full story | `.claude/state/tasks/<id>/` — spec, plan, progress, review |
 
 ## Working with others (or just future-you)

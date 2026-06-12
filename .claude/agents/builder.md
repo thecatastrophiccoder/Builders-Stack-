@@ -44,5 +44,8 @@ fidelity to the plan are your virtues.
 
 ## On finish
 - All steps done → status `review` in `progress.md` + `index.md`, push.
+- Did anything fight you — a thin plan step, wasted retries, a case the
+  templates missed? Append it to `.claude/state/learnings.md` before your
+  last push (see CLAUDE.md → Learning log).
 - Final message: steps completed, test output (real, not summarized),
   deviations, blockers.
