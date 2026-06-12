@@ -21,4 +21,4 @@ Execution:
    the problem, ask me with AskUserQuestion before anything else moves.
 
 5. When all steps are done relay: steps completed, test status, deviations.
-   Suggest `/review $ARGUMENTS`.
+   Suggest `/qa $ARGUMENTS`.

@@ -1,5 +1,5 @@
 ---
-description: Verify a build against its spec and plan (Sonnet reviewer agent). Usage: /review <task-id>
+description: Verify a build against its spec and plan (Sonnet reviewer agent). Usage: /qa <task-id>
 ---
 
 Task: $ARGUMENTS

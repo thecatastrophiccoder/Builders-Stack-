@@ -37,3 +37,34 @@ Entry format (newest at the bottom):
   building work that assumes pushing; surface a permissions checklist to the
   user at session start instead of at delivery time.
 - **Status:** open
+
+### 2026-06-12 — /review collided with a built-in skill and never registered
+- **By:** orchestrating session · **Task:** n/a · **Type:** mistake
+- **What happened:** `.claude/commands/review.md` never registered as a
+  slash command — Claude Code ships a built-in `review` skill, and name
+  collisions don't error, they silently shadow. The session's skill registry
+  showed every command registering except `/review`.
+- **Context:** Built-in skill names observed in-session: review, verify,
+  code-review, security-review, init, run, loop, simplify. None may be used
+  as project command names.
+- **Impact:** The verification stage of the loop was unreachable by its
+  documented name; docs pointed at a command that didn't exist.
+- **Suggested improvement:** Check the session's skill list before naming a
+  command; prefer collision-proof names. Renamed to `/qa` — it registered
+  immediately, confirming the diagnosis.
+- **Status:** adopted → ADR 2026-06-12 (Builders' Stack generalization)
+
+### 2026-06-12 — Broke our own same-commit codemap rule
+- **By:** orchestrating session · **Task:** n/a · **Type:** mistake
+- **What happened:** README.md was committed with no codemap.md row — in the
+  same session that wrote the rule requiring exactly that.
+- **Context:** The rule lives in conventions.md, but the orchestrator wasn't
+  re-checking its own conventions before committing structural changes.
+  Caught only during a later explicit review pass.
+- **Impact:** Stale code map; mildly embarrassing precedent — if the
+  rule-writer skips the rule, agents will too.
+- **Suggested improvement:** Any commit adding/renaming top-level or source
+  files should be grepped against codemap.md before committing (a cheap
+  reviewer/builder checklist line — already in reviewer.md step 5; the
+  orchestrator must hold itself to it too).
+- **Status:** adopted (rows fixed in the same commit as this entry)

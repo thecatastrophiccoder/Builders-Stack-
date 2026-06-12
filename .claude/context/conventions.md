@@ -1,4 +1,4 @@
-# Conventions — ckSearch
+# Conventions — Builders' Stack
 
 > Read by every agent and human. The builder follows these literally; the
 > reviewer enforces them.

@@ -15,8 +15,8 @@ exactly where the last one stopped.
 ## How it works (30 seconds)
 
 ```
-idea ──/pm──▶ spec ──/plan──▶ plan ──/build──▶ code ──/review──▶ verdict
-        Opus          Opus           Sonnet            Sonnet
+idea ──/pm──▶ spec ──/plan──▶ plan ──/build──▶ code ──/qa──▶ verdict
+        Opus          Opus           Sonnet          Sonnet
 ```
 
 - **Opus** (or Fable) writes the spec and the step-by-step plan — all the
@@ -34,7 +34,7 @@ idea ──/pm──▶ spec ──/plan──▶ plan ──/build──▶ cod
 ```
 
 Or run the stages yourself: `/pm` → `/plan <task-id>` → `/build <task-id>`
-→ `/review <task-id>`.
+→ `/qa <task-id>`.
 
 ## Where things live
 

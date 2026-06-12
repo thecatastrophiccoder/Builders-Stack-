@@ -11,7 +11,7 @@ person, any agent can pick up where another left off.
 /pm add fuzzy matching to merchant search     # Opus writes a spec (asks you if ambiguous)
 /plan 2026-06-12-fuzzy-merchant-search        # Opus writes a step plan
 /build 2026-06-12-fuzzy-merchant-search       # Sonnet implements, pushing per step
-/review 2026-06-12-fuzzy-merchant-search      # Sonnet verifies against the spec
+/qa 2026-06-12-fuzzy-merchant-search          # Sonnet verifies against the spec
 /status                                       # reconcile index with git, see everything
 
 /ship add fuzzy matching to merchant search   # all of the above, S/M tasks only
@@ -28,7 +28,7 @@ AGENTS.md              # bootstrap pointer for non-Claude tools
 │   ├── planner.md     # opus   — spec → step plan, interfaces, claims
 │   ├── builder.md     # sonnet — plan → code, commit+push per step
 │   └── reviewer.md    # sonnet — code → verdict + hygiene enforcement
-├── commands/          # /pm /plan /build /review /ship /status
+├── commands/          # /pm /plan /build /qa /ship /status
 ├── context/           # long-lived knowledge (read before working)
 │   ├── product.md     # what & for whom            (FILL THE TODOs)
 │   ├── architecture.md# stack & system design      (FILL THE TODOs)

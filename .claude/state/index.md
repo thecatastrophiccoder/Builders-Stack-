@@ -9,7 +9,9 @@
 |---|---|---|---|---|---|---|---|
 | _none yet_ | | | | | | | |
 
-Statuses: `backlog → spec → planned → building → blocked → review → done`
+Statuses: `backlog → spec → planned → building → review → done`
+(`blocked` is a side-state entered from `building`; returns to `building`
+once the planner resolves the blocker.)
 
 Column conventions:
 - **Owner** — email or session-id while claimed; `—` when free. A claim is

@@ -1,4 +1,4 @@
-# ckSearch — Agent Operating Manual
+# Builders' Stack — Agent Operating Manual
 
 Written and maintained as the staff engineer owning this workflow. Every rule
 here paid for itself in a past failure. Follow them. If one is wrong, change
@@ -74,7 +74,8 @@ workflow.
 2. `/plan <id>` — Planner (Opus) → `plan.md`, file-level steps.
 3. `/build <id>` — Builder(s) (Sonnet) execute steps; progress + push after
    every step.
-4. `/review <id>` — Reviewer (Sonnet) → `review.md`, verdict.
+4. `/qa <id>` — Reviewer (Sonnet) → `review.md`, verdict. (Named `/qa`
+   because `/review` collides with a built-in skill and gets shadowed.)
 5. `/ship <idea>` — 1–4 end-to-end, small/medium tasks only.
 6. `/status` — reconcile index against git and report.
 
