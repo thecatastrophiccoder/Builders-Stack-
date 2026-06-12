@@ -100,3 +100,25 @@ starts at the planner or the builder. Branch, claim, index row, per-step
 pushes, tests, codemap, and review are identical in all lanes — lanes
 drop documents, not discipline. Index rows may enter mid-chain (Build at
 `planned`, Fix at `building`).
+
+## 2026-06-12 — Mid-project adoption: /adopt derives the context pack
+**Status:** accepted
+**Context:** The stack assumed greenfield — context files shipped as
+hand-fill TODOs and the codemap mapped only workflow files. Real adoption
+usually happens mid-project, where hand-typing the context pack is
+exactly the ceremony this workflow exists to kill — and clobbering
+existing CLAUDE.md/context content, or importing a backlog nobody asked
+for, would poison trust on day one.
+**Decision:** `/adopt` bootstraps into an existing codebase: planner and
+pm (Opus, adopt modes, parallel on disjoint files) derive architecture,
+codemap (the real tree), conventions (detected test/lint commands),
+product, and up to 3 "observed" ADRs — from manifests, lockfiles, CI
+configs, entry points, and docs, never from "typical project" memory.
+Lines inferred without hard evidence carry a `confirm:` prefix and return
+to the user as one batched question list. Merge, never clobber.
+Pre-existing branches/PRs join the index onboard-as-you-go — when a lane
+first touches them. The gitleaks full-history caveat is relayed at
+adoption.
+**Consequences:** Day-one adoption cost is one command plus one confirm
+batch; context starts from evidence, humans confirm instead of typing;
+the index never claims work it doesn't own.

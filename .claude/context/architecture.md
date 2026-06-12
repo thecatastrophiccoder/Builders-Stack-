@@ -1,7 +1,8 @@
 # Architecture Context — Builders' Stack
 
 > Owned by humans + the `planner` agent. Keep this current — a stale
-> architecture doc is worse than none.
+> architecture doc is worse than none. (Existing codebase? `/adopt`
+> derives this from manifests and entry points.)
 
 ## Stack
 TODO: languages, frameworks, datastores, infra, third-party services.

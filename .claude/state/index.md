@@ -12,7 +12,8 @@
 Statuses: `backlog → spec → planned → building → review → done`
 (`blocked` is a side-state entered from `building`; returns to `building`
 once the planner resolves the blocker. Lanes enter mid-chain: Build-lane
-tasks start at `planned`, Fix-lane tasks at `building`.)
+tasks start at `planned`, Fix-lane tasks at `building`. Work predating
+the stack joins onboard-as-you-go — when a lane first touches it.)
 
 Column conventions:
 - **Owner** — email or session-id while claimed; `—` when free. A claim is

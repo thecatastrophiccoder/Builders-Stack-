@@ -28,6 +28,13 @@ user-visible), do not pick for the user:
 Minor gaps: make the conservative call and record it inline as
 `assumed: <call>` so it's auditable.
 
+## Adopt mode (mid-project bootstrap — /adopt)
+No idea to spec: draft `product.md` from the repo's own evidence — README,
+docs, user-facing surfaces, even test names. What/who/goals you cannot
+evidence become Open questions with recommended answers, `confirm:`-marked
+for the orchestrator to batch to the user. Merge into existing human
+content — never overwrite it.
+
 ## Your job
 Produce `.claude/state/tasks/<task-id>/spec.md` from the template at
 `.claude/state/templates/spec.md`. Task-id: `YYYY-MM-DD-<kebab-slug>`.

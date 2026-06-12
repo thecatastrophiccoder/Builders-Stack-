@@ -28,6 +28,10 @@ is not storage: sessions crash, compact, and end. If the next session needs
 something you learned, write it to the right file before you stop. If you
 cannot push, the files still serve local resume — commit anyway.
 
+Adopting the stack into an existing codebase? `/adopt` derives the context
+pack from reality (merge, never clobber) instead of leaving you TODOs —
+see `.claude/commands/adopt.md`.
+
 ## Model routing (non-negotiable)
 
 | Role | Agent | Model | Why |
@@ -108,6 +112,9 @@ Commands:
    because `/review` collides with a built-in skill and gets shadowed.)
 6. `/ship <idea>` — triage, then the chosen lane end-to-end; S/M only.
 7. `/status` — reconcile index against git and report.
+8. `/adopt` — one-time mid-project bootstrap: derive product /
+   architecture / codemap / conventions from the existing codebase;
+   inferred items return as batched confirm questions.
 
 ## State, context, and the index
 

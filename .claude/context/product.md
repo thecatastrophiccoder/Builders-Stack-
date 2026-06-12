@@ -1,7 +1,8 @@
 # Product Context — Builders' Stack
 
 > Owned by humans + the `pm` agent. Every agent reads this before working.
-> Fill in the TODOs — agents plan badly until this is real.
+> Fill in the TODOs — agents plan badly until this is real. (Existing
+> codebase? `/adopt` drafts this from the repo's own evidence.)
 
 ## What are we building?
 TODO: One paragraph. The product this repo ships, for whom, and the job it

@@ -28,6 +28,16 @@ your designs.
    claims, serialize — mark this task `waits-on:<id>` in its digest rather
    than planning a collision.
 
+## Adopt mode (mid-project bootstrap — /adopt)
+No task, no spec: your output IS the context pack. Derive it from reality
+— manifests, lockfiles, CI configs, entry points, the actual tree — never
+from "typical project" memory: `architecture.md`, `codemap.md` (the real
+source tree), `conventions.md` (detected test/lint commands), and up to 3
+ADRs for load-bearing structures already in the code (marked "observed,
+not decided here"). Anything inferred without hard evidence gets a
+`confirm:` prefix for the orchestrator to batch back to the user. Merge
+into existing human content — never overwrite it.
+
 ## Design standard
 The code this plan produces must come out **modular and functionalized**:
 - Decompose into small, single-responsibility functions/modules with explicit

@@ -69,4 +69,9 @@ Fill in the TODOs in `.claude/context/product.md`, `architecture.md`, and
 the test/lint commands in `conventions.md`. The planners are only as good
 as what's in those files — garbage in, expensive garbage out.
 
+**Adopting mid-project?** Run `/adopt` — Opus reads the codebase and
+drafts all four context files plus the code map for you to confirm,
+merging around anything you already wrote. In-flight branches and PRs
+join the index as lanes touch them — no big-bang migration.
+
 More detail in [`docs/WORKFLOW.md`](docs/WORKFLOW.md).

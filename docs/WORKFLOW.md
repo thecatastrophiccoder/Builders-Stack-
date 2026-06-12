@@ -27,6 +27,26 @@ Lighter lanes drop documents, never discipline: branch, index row,
 per-step pushes, tests, and review apply in all three; the first material
 question moves a task up a lane.
 
+## Adopting mid-project
+
+Most teams add this workflow to a codebase that already exists. `/adopt`
+bootstraps it in one pass:
+
+- **Derived, not typed.** planner + pm (Opus) read manifests, lockfiles,
+  CI configs, entry points, and docs, then draft `architecture.md`,
+  `codemap.md` (the real source tree), `conventions.md` (detected
+  test/lint commands), `product.md`, and up to 3 "observed" ADRs.
+  Anything inferred without hard evidence is `confirm:`-marked and comes
+  back to you as one batched question list — you confirm, you don't type.
+- **Merge, never clobber.** Existing CLAUDE.md/context content is merged
+  around; replacing human-written text requires explicit confirmation.
+- **Onboard-as-you-go.** Pre-existing branches and PRs are reported, not
+  imported; they get index rows when a lane first touches them. The index
+  never claims work it doesn't own.
+- **History caveat.** The gitleaks CI guard scans full history — an older
+  repo may surface historic secrets on its first run. That's signal:
+  rotate the secret, then allowlist the commit.
+
 ## The pieces
 
 ```
@@ -38,7 +58,7 @@ AGENTS.md              # bootstrap pointer for non-Claude tools
 │   ├── planner.md     # opus   — spec → step plan, interfaces, claims
 │   ├── builder.md     # sonnet — plan → code, commit+push per step
 │   └── reviewer.md    # sonnet — code → verdict + hygiene enforcement
-├── commands/          # /fix /pm /plan /build /qa /ship /status
+├── commands/          # /adopt /fix /pm /plan /build /qa /ship /status
 ├── context/           # long-lived knowledge (read before working)
 │   ├── product.md     # what & for whom            (FILL THE TODOs)
 │   ├── architecture.md# stack & system design      (FILL THE TODOs)
