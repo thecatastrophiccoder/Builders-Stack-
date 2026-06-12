@@ -21,4 +21,5 @@
 | `.github/workflows/checks.yml` | CI guards: command-name shadowing, codemap path check, gitleaks | Extend builtins list per ADR |
 | `docs/WORKFLOW.md` | Human-facing guide + best practices | |
 | `docs/one-pager.md` | One-page how-to-use + benefits | Hand this to new adopters |
+| `docs/index.html` | Standalone visual starter guide (openable / GitHub Pages) | Plain-language intro to the whole workflow |
 | _source tree: TODO — `/adopt` writes it on existing codebases; else added as code lands_ | | |

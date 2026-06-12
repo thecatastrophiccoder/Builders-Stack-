@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builders' Stack — how it works</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --soft:#5c5c5c; --line:#e6e3dd; --bg:#faf8f4;
+    --card:#fff; --accent:#b5471f; --accent-soft:#fbeee7; --code:#f3f0ea;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:0 22px}
+  header{padding:64px 0 40px; border-bottom:1px solid var(--line)}
+  h1{font-size:40px; line-height:1.1; margin:0 0 14px; letter-spacing:-.02em}
+  .tag{color:var(--accent); font-weight:600}
+  .lede{font-size:19px; color:var(--soft); margin:0; max-width:60ch}
+  h2{font-size:25px; margin:52px 0 6px; letter-spacing:-.01em}
+  h2 .num{color:var(--accent); font-weight:700; margin-right:10px}
+  h3{font-size:17px; margin:28px 0 4px}
+  p{margin:12px 0}
+  .muted{color:var(--soft)}
+  code{background:var(--code); padding:2px 6px; border-radius:5px; font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:.9em}
+  .cmd{color:var(--accent); font-weight:600}
+  .flow{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:18px; margin:18px 0; font-size:14px;
+  }
+  .flow b{background:var(--accent-soft); color:var(--accent); padding:4px 10px; border-radius:6px; font-family:ui-monospace,monospace; font-weight:600}
+  .flow .node{background:var(--code); padding:4px 10px; border-radius:6px}
+  .flow .arrow{color:var(--soft)}
+  .grid{display:grid; gap:14px; margin:18px 0}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px}
+  .card.lane{border-left:4px solid var(--accent)}
+  .card h3{margin-top:0}
+  .pill{display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:20px; background:var(--accent-soft); color:var(--accent); margin-left:8px; vertical-align:middle}
+  table{width:100%; border-collapse:collapse; margin:18px 0; font-size:14.5px}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--soft)}
+  pre{background:var(--code); border:1px solid var(--line); border-radius:10px; padding:16px; overflow:auto; font-size:13.5px; line-height:1.7; margin:12px 0}
+  pre .c{color:var(--soft)}
+  pre .k{color:var(--accent); font-weight:600}
+  ul{margin:12px 0; padding-left:22px}
+  li{margin:7px 0}
+  .stage{margin:22px 0}
+  .stage .when{color:var(--soft); font-size:14.5px; margin:2px 0 8px}
+  .rules{counter-reset:r; list-style:none; padding:0}
+  .rules li{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px 14px 54px; position:relative; margin:10px 0}
+  .rules li::before{counter-increment:r; content:counter(r); position:absolute; left:16px; top:14px; width:26px; height:26px; background:var(--accent); color:#fff; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:14px}
+  footer{margin:60px 0 40px; padding-top:24px; border-top:1px solid var(--line); color:var(--soft); font-size:14px}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Builders' Stack</h1>
+  <p class="lede">A way to build software with a team of AI agents.
+  <span class="tag">Expensive models think, cheap models type, and files remember everything</span> — so any session, any person, any model can pick up exactly where the last one stopped.</p>
+</header>
+
+<h2><span class="num">1</span>The big idea</h2>
+<p>One model doing everything is expensive and forgetful. When the chat window fills up or the session crashes, the thinking is gone and you start over.</p>
+<p>Builders' Stack splits the work and writes it all down:</p>
+<ul>
+  <li><b>Smart models (Opus / Fable)</b> make the decisions — the spec and the plan. This is where deep thinking pays off.</li>
+  <li><b>Fast models (Sonnet)</b> do the typing and the review — given a clear plan, they're quick, cheap, and reliable.</li>
+  <li><b>Files — not chat memory</b> — hold every spec, plan, decision, and bit of progress. The chat can die; the work survives.</li>
+</ul>
+
+<h2><span class="num">2</span>The flow, end to end</h2>
+<div class="flow">
+  <span class="node">idea</span><span class="arrow">→</span>
+  <b>/pm</b><span class="arrow">→</span><span class="node">spec</span><span class="arrow">→</span>
+  <b>/plan</b><span class="arrow">→</span><span class="node">plan</span><span class="arrow">→</span>
+  <b>/build</b><span class="arrow">→</span><span class="node">code</span><span class="arrow">→</span>
+  <b>/qa</b><span class="arrow">→</span><span class="node">verdict</span>
+</div>
+<p class="muted">Opus writes the spec and plan · Sonnet builds and reviews · if anything is unclear, it asks you instead of guessing.</p>
+
+<h2><span class="num">3</span>Three lanes — pick by how clear the task is</h2>
+<p>You don't run the full pipeline for every little thing. The work is spent where the <i>uncertainty</i> is. Just describe your task — the session picks the lane and tells you which one in a single line.</p>
+
+<div class="grid">
+  <div class="card lane">
+    <h3>Fix lane <span class="pill">XS · mechanical</span></h3>
+    <p class="muted" style="margin:4px 0 10px">Clear target, no decisions to make. A typo, a broken link, a bumped dependency.</p>
+    <p style="margin:0"><span class="cmd">/fix &lt;description&gt;</span> → a Sonnet builder goes straight to work, reviewer checks after. No spec, no plan document.</p>
+  </div>
+  <div class="card lane">
+    <h3>Build lane <span class="pill">S/M · the everyday default</span></h3>
+    <p class="muted" style="margin:4px 0 10px">You know <i>what</i> you want, it just needs designing and doing. Most coding lives here.</p>
+    <p style="margin:0"><span class="cmd">/plan &lt;description&gt;</span> → Opus writes a short spec + plan in one step (no separate PM stage), Sonnet builds it, Sonnet reviews it.</p>
+  </div>
+  <div class="card lane">
+    <h3>Product lane <span class="pill">ambiguous · large</span></h3>
+    <p class="muted" style="margin:4px 0 10px">The "what" itself needs deciding, or the task is big. New features, reworks.</p>
+    <p style="margin:0"><span class="cmd">/pm &lt;idea&gt;</span> → Opus writes a proper spec and asks you the open questions first, then plan → build → review.</p>
+  </div>
+</div>
+<p class="muted">Lighter lanes drop <i>documents</i>, never <i>discipline</i> — every lane still gets its own branch, per-step saves, tests, and a review. The moment a small task turns out to need a real decision, it moves up a lane instead of guessing.</p>
+
+<h2><span class="num">4</span>The commands</h2>
+<table>
+  <tr><th>Command</th><th>When you use it</th><th>What happens</th></tr>
+  <tr><td><span class="cmd">/adopt</span></td><td>Adding this to a codebase that already exists</td><td>Opus reads your code and drafts the context files; you confirm one batch of questions.</td></tr>
+  <tr><td><span class="cmd">/fix</span></td><td>Tiny mechanical change</td><td>Builder does it directly; reviewer checks.</td></tr>
+  <tr><td><span class="cmd">/plan</span></td><td>A clear feature or change</td><td>Opus plans it (mini-spec inline), ready to build.</td></tr>
+  <tr><td><span class="cmd">/pm</span></td><td>A fuzzy or big idea</td><td>Opus writes a spec and asks you the open questions.</td></tr>
+  <tr><td><span class="cmd">/build</span></td><td>A plan exists</td><td>Sonnet implements each step, saving after every one.</td></tr>
+  <tr><td><span class="cmd">/qa</span></td><td>A build is done</td><td>Sonnet reviews it against the spec; gives a verdict.</td></tr>
+  <tr><td><span class="cmd">/ship</span></td><td>Hands-off — do the whole thing</td><td>Picks the right lane and runs it start to finish.</td></tr>
+  <tr><td><span class="cmd">/status</span></td><td>Anytime</td><td>One report: every task, who owns it, what's next.</td></tr>
+</table>
+<p class="muted">Forgot a command? Just say what you want in plain words — the session names the right one and gets going. Commands speed you up; they're never a gate.</p>
+
+<h2><span class="num">5</span>Across the life of a project</h2>
+<p>The same handful of commands carry you from an empty repo to long-term upkeep. Only the <i>mix</i> changes.</p>
+
+<div class="stage">
+  <h3>Stage 0 · Bootstrap <span class="muted">(once)</span></h3>
+  <p class="when">Make the context real before any planning — agents plan badly against blanks.</p>
+<pre><span class="c"># new repo: fill in .claude/context/ by hand</span>
+<span class="k">/adopt</span> our Django + Postgres API, tests via pytest   <span class="c"># existing code: derive it, confirm one batch</span>
+<span class="k">/status</span>                                          <span class="c"># check the board is clean</span></pre>
+</div>
+
+<div class="stage">
+  <h3>Stage 1 · Zero to one <span class="muted">(define what you're building)</span></h3>
+  <p class="when">The "what" is fuzzy, so you live in the Product lane. Decisions get captured while they're still cheap to change.</p>
+<pre><span class="k">/pm</span> a referral system that rewards inviter and invitee
+        <span class="c">→ answer its questions; the spec lands approved</span>
+<span class="k">/plan</span> 2026-06-12-referral-system
+<span class="k">/build</span> 2026-06-12-referral-system
+<span class="k">/qa</span> 2026-06-12-referral-system
+<span class="c"># or do it all at once:</span>  <span class="k">/ship</span> a referral system that rewards both sides</pre>
+</div>
+
+<div class="stage">
+  <h3>Stage 2 · Build-out <span class="muted">(most of the project's life)</span></h3>
+  <p class="when">The product is understood; features are clear. Build lane is your default — skip the PM step.</p>
+<pre><span class="k">/plan</span> add pagination to the offers endpoint
+<span class="k">/build</span> 2026-06-12-paginate-offers
+<span class="k">/qa</span> 2026-06-12-paginate-offers
+<span class="k">/fix</span> offers endpoint 500s on an empty cursor       <span class="c"># quick bug → builder direct</span>
+<span class="k">/status</span>                                          <span class="c"># end of session: what's in flight</span></pre>
+</div>
+
+<div class="stage">
+  <h3>Stage 3 · Scale &amp; collaboration <span class="muted">(more hands)</span></h3>
+  <p class="when">Several people or agents at once. The commands don't change; claims and <code>/status</code> handle the coordination.</p>
+<pre><span class="k">/status</span>                                          <span class="c"># who owns what; which claims went stale (&gt;2h)</span>
+<span class="k">/plan</span> migrate sessions table to partitioned storage  <span class="c"># declares the files it touches</span>
+<span class="k">/build</span> 2026-06-13-partition-sessions             <span class="c"># overlapping work waits; the rest runs in parallel</span>
+<span class="c"># stale claim? read progress, /build picks up from the last good step</span></pre>
+</div>
+
+<div class="stage">
+  <h3>Stage 4 · Maintenance &amp; hardening <span class="muted">(mature)</span></h3>
+  <p class="when">Mostly small mechanical work, plus the odd decision that comes back around.</p>
+<pre><span class="k">/fix</span> bump axios past the advisory, redo the lockfile  <span class="c"># the workhorse here</span>
+<span class="k">/fix</span> correct the rate-limit header name
+<span class="k">/pm</span>  do we still need the v1 webhook?                <span class="c"># a real question → back to Product lane</span>
+<span class="k">/status</span>                                          <span class="c"># archive done tasks, keep the board small</span></pre>
+</div>
+
+<div class="stage">
+  <h3>Stage 5 · Handoff &amp; onboarding <span class="muted">(anytime)</span></h3>
+  <p class="when">Bringing in a person or a fresh agent is two files, not a tour.</p>
+<pre><span class="c"># point them at: README → docs/one-pager.md → CLAUDE.md</span>
+<span class="k">/status</span>                                          <span class="c"># the whole state of the world in one read</span></pre>
+</div>
+
+<div class="card" style="background:var(--accent-soft); border-color:#f0d9cd">
+  <b>Rule of thumb:</b> early project → more <span class="cmd">/pm</span>. Mature project → more <span class="cmd">/fix</span> and <span class="cmd">/plan</span>.
+  Reaching for <span class="cmd">/pm</span> on every small task? The product's clear enough to drop to the Build lane.
+  <span class="cmd">/fix</span> keeps hitting design choices? You're under-specced — go up a lane.
+</div>
+
+<h2><span class="num">6</span>What you get</h2>
+<ul>
+  <li><b>Nothing gets lost.</b> Every step is saved and pushed — a crash costs you one step, not a day. Resume by reading one file.</li>
+  <li><b>It's cheaper.</b> Most of the work (the typing) runs on the fast cheap model — roughly 3–5× less than letting a top model do everything.</li>
+  <li><b>Things run in parallel.</b> Independent steps get built at the same time by separate agents.</li>
+  <li><b>A second pair of eyes, always.</b> Review is built into the loop, with a cap so it can't spin forever.</li>
+  <li><b>You can answer "why."</b> Specs, decisions, and even the agents' own logged mistakes live in files — six months later it's a lookup, not a guess.</li>
+</ul>
+
+<h2><span class="num">7</span>The three rules that matter most</h2>
+<ol class="rules">
+  <li><b>Files over memory.</b> If the next session needs to know it, it goes in a file.</li>
+  <li><b>The board never lies.</b> The task list updates in the same save as the work it describes.</li>
+  <li><b>Ask before you assume.</b> Real questions go to you; small calls get made carefully and written down.</li>
+</ol>
+
+<footer>
+  Builders' Stack · runs on Claude Code · MIT licensed.
+  Full guide in <a href="WORKFLOW.md">docs/WORKFLOW.md</a> · quick version in <a href="one-pager.md">docs/one-pager.md</a> · the rules live in <a href="../CLAUDE.md">CLAUDE.md</a>.
+</footer>
+
+</div>
+</body>
+</html>
